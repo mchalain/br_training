@@ -1,0 +1,1 @@
+source "$BR2_EXTERNAL_TRAINING_PATH/package/mandatory/Config.in"
