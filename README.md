@@ -2,6 +2,7 @@
 
 This project build buildroot image for:
  * Raspberry Pi4
+ * Raspberry Pi3
 
 ## Setting
 The host system must be a standard Linux distribution. A good choice may be Debian.
