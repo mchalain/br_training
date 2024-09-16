@@ -3,6 +3,7 @@
 This project build buildroot image for:
  * Raspberry Pi4
  * Raspberry Pi3
+ * Raspberry Pi3 with u-boot
 
 ## Usage
 ### Settings

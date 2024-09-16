@@ -1,0 +1,5 @@
+dtoverlay=miniuart-bt
+enable_uart=1
+kernel=u-boot.bin
+disable_overscan=1
+kernel2=zImage

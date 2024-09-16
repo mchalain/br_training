@@ -1,0 +1,1 @@
+CONFIG_DEFAULT_DEVICE_TREE="bcm2837-rpi-3-b-plus"
