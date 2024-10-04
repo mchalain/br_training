@@ -55,4 +55,3 @@ $ |
 Into the docs directory we can find several files to describe exercices:
  * [wifi](/docs/wifi.md) creates a Wifi hotspot with hostapd, dnsmasq and iptables
  * [U-Boot](/docs/u-boot.md) builds U-Boot for Rapsberry Pi
-
