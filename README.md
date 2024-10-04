@@ -4,7 +4,8 @@ This project build buildroot image for:
  * Raspberry Pi4
  * Raspberry Pi3
 
-## Setting
+## Usage
+### Settings
 The host system must be a standard Linux distribution. A good choice may be Debian.
 
 The packages to install:
@@ -16,7 +17,7 @@ The packages to install:
 The buildroot project must be downloaded any where on the PC. In the file we choice:  
   **/opt/buildroot**
 
-## Building
+### Building
 Buildroot is a makefiles' collection and must be call from a console shell.
 
 ```shell
@@ -27,7 +28,7 @@ $ cd output
 $ make
 ```
 
-## Installation
+### Installation
 The generated image must be written on a SD card.
 Take care of the device node of the card before to write, it is easy to **destroy** your file system
 
@@ -40,12 +41,16 @@ $ sudo dmesg
 [ 3789.708194] EXT4-fs (sdd2): mounted filesystem with ordered data mode. Quota mode: none.
 $ sudo umount /dev/sdd2
 $ sudo dd if=images/sdcard.img of=/dev/sdd bs=1M
-
+$ |
 ```
 
-## Startup
+### Startup
  * Insert the SD card inside the board.
  * Plug the Serial to USB cable between the board and the PC host.
  * Open minicom on the PC host.
- * Plug the USB type C cable to the board from the alimentation.
+ * Plug the USB type C (or mini-USB depending on the board) cable to the board from the alimentation.
+
+## Progression
+Into the docs directory we can find several files to describe exercices:
+ * [wifi](/docs/wifi.md) create a Wifi hotspot with hostapd, dnsmasq and iptables
 
