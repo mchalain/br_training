@@ -1,15 +1,36 @@
 #!/bin/sh
 
-BUILDROOT=buildroot
-BUILDROOT_PKG=buildroot-2024.02.6
-INSTALLDIR=$PWD
-wget http://buildroot.org/downloads/$BUILDROOT_PKG.tar.gz
+BUILDROOT=buildroot-2024.08
+BUILDROOT_PKG=buildroot-2024.08.tar.gz
+BR_TRAINING=$PWD
+OUTPUT=$PWD/output
 
-pushd /opt
-tar -xf $INSTALLDIR/$BUILDROOT_PKG.tar.gz
-chmod a+w $BUILDROOT/dl
-popd
+if [ -e /etc/os-release ]; then
+  . /etc/os-release
+fi
+# install debian pkg
+if [ ! -e $BR_TRAINING/.install_pkg ]; then
+  if [ "$ID" = "debian" ]; then
+    sudo apt install build-essential unzip rsync bc libncurses-dev
+    touch $BR_TRAINING/.install_pkg
+  fi
+fi
+cd $BR_TRAINING
+if [ ! -e $BUILDROOT_PKG ]; then
+  wget http://buildroot.org/downloads/$BUILDROOT_PKG
+fi
 
-make -C /opt/$BUILDROOT O=$PWD/output BR2_EXTERNAL=$PWD training_rpi3_defconfig
-cd output
+if [ ! -d /opt/$BUILDROOT ]; then
+  cd /opt
+  sudo tar -xf $BR_TRAINING/$BUILDROOT_PKG
+  sudo mkdir $BUILDROOT/dl
+  sudo chmod a+w $BUILDROOT/dl
+  cd -
+fi
+
+if [ ! -d $OUTPUT ]; then
+  make -C /opt/$BUILDROOT O=$OUTPUT BR2_EXTERNAL=$BR_TRAINING training_rpi3_defconfig
+fi
+cd $OUTPUT
 make
+
