@@ -1,0 +1,5 @@
+config BR2_PACKAGE_MYDRIVER
+	bool "kernel exercices"
+	help
+	  https://github.com/mchalain/kernel-exercices
+
