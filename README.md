@@ -49,6 +49,7 @@ $ |
  * Plug the Serial to USB cable between the board and the PC host.
  * Open minicom on the PC host.
  * Plug the USB type C (or mini-USB depending on the board) cable to the board from the alimentation.
+ * Open the shell on terminal. User: root Passwd: training
 
 ## Progression
 Into the docs directory we can find several files to describe exercices:
