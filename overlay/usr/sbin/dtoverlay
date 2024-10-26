@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ ! -f $1 ]; then
+	echo file $1 not found
+	exit
+fi
+if [ ! -e /sys/kernel/config/device-tree/ ]; then
+	mount -t configfs configfs /sys/kernel/config/
+fi
+NAME=$(echo $1 | sed 's,\.dtbo$,,' | sed 's,.*/,,g' )
+mkdir /sys/kernel/config/device-tree/overlays/$NAME
+cat $1 > /sys/kernel/config/device-tree/overlays/$NAME/dtbo
+
