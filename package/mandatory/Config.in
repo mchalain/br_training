@@ -5,7 +5,10 @@ config BR2_PACKAGE_TRAINING_MANDATORY
 	select BR2_PACKAGE_KMOD_TOOLS
 	select BR2_PACKAGE_HOST_KMOD_XZ
 	select BR2_PACKAGE_DROPBEAR
+	select BR2_TOOLCHAIN_BUILDROOT_CXX
 	help
 	  Install some tools:
 	   - xz, kmod for kernel modules loading
 	   - dropbear for ssh
+	  SDK:
+	   - add C++ support
