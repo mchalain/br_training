@@ -1,0 +1,11 @@
+config BR2_PACKAGE_TRAINING_MANDATORY
+	bool "Minimum setting to have something running"
+	select BR2_PACKAGE_XZ
+	select BR2_PACKAGE_KMOD
+	select BR2_PACKAGE_KMOD_TOOLS
+	select BR2_PACKAGE_HOST_KMOD_XZ
+	select BR2_PACKAGE_DROPBEAR
+	help
+	  Install some tools:
+	   - xz, kmod for kernel modules loading
+	   - dropbear for ssh
