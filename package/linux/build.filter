@@ -1,0 +1,42 @@
+# exclusions globales (avant les includes)
+- *.o
+- *.a
+- .*.cmd
+- *.ko
+- .git/
+
+# fichiers racine
++ /.config
++ /Makefile
++ /Module.symvers
++ /System.map
+
+# kernel et arch
++ /kernel/
++ /kernel/Makefile
++ /arch/
++ /arch/@ARCH@/
++ /arch/@ARCH@/Makefile
++ /arch/@ARCH@/include/***
++ /arch/@ARCH@/tools/***
++ /arch/@ARCH@/kernel/
++ /arch/@ARCH@/kernel/asm-offsets.s
+
+# headers et scripts (binaires hôte)
++ /include/***
++ /scripts/***
+
+# outils hôte optionnels
++ /tools/
++ /tools/objtool/
++ /tools/objtool/objtool
++ /tools/bpf/
++ /tools/bpf/resolve_btfids/
++ /tools/bpf/resolve_btfids/resolve_btfids
+
+# Kconfig partout (pour syncconfig)
++ */
++ Kconfig*
+
+# tout le reste est ignoré
+- *

@@ -1,0 +1,25 @@
+BUILDROOT=$(realpath $(dir $(firstword $(MAKEFILE_LIST))))
+PATH:=$(BUILDROOT)/bin:$(BUILDROOT)/sbin:$(PATH)
+ARCH=@ARCH@
+CROSS_COMPILE=@CROSS_COMPILE@
+SYSROOT=$(BUILDROOT)/$(CROSS_COMPILE:%-=%)/sysroot
+KVERSION=$(file < $(SYSROOT)/usr/include/linux/kernel.release)
+KDIR=$(SYSROOT)/usr/src/linux-$(KVERSION)
+CFLAGS+=--sysroot=$(SYSROOT)
+CC:=$(CROSS_COMPILE)gcc
+LD:=$(CROSS_COMPILE)$(LD)
+
+ifeq ($(SRCDIR),)
+  $(error SRCDIR is not set : \
+      make -C $(BUILDROOT) SRCDIR=$$PWD)
+endif
+MAKE_OPTS+=PATH=$(PATH)
+MAKE_OPTS+=ARCH=$(ARCH)
+MAKE_OPTS+=CC=$(CC)
+MAKE_OPTS+=LD=$(LD)
+MAKE_OPTS+=CFLAGS=$(CFLAGS)
+MAKE_OPTS+=KDIR=$(KDIR)
+all:
+	$(MAKE) -C $(SRCDIR) $(MAKE_OPTS)
+%:
+	$(MAKE) -C $(SRCDIR) $(MAKE_OPTS) $@
