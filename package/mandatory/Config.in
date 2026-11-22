@@ -25,3 +25,20 @@ config BR2_PACKAGE_TRAINING_WIFI
 	   - hostapd
 	   - dnsmasq
 	   - iptables
+
+config BR2_PACKAGE_TRAINING_UBOOT
+	bool "Enable u-Boot"
+	select BR2_TARGET_UBOOT
+	select BR2_PACKAGE_HOST_UBOOT_TOOLS_BOOT_SCRIPT
+	select BR2_PACKAGE_HOST_UBOOT_TOOLS
+
+config BR2_TARGET_UBOOT_BOARD_DEFCONFIG
+	default "rpi_3_32b" if BR2_LINUX_KERNEL_DEFCONFIG="bcm2709"
+	default "rpi_4" if BR2_LINUX_KERNEL_DEFCONFIG="bcm2711"
+
+config BR2_TARGET_UBOOT_CONFIG_FRAGMENT_FILES
+	default "$(BR2_EXTERNAL_TRAINING_PATH)/board/raspberrypi/uboot-rpi3_b_plus.frag" if BR2_LINUX_KERNEL_DEFCONFIG="bcm2709"
+
+config BR2_PACKAGE_HOST_UBOOT_TOOLS_BOOT_SCRIPT_SOURCE
+	default "$(BR2_EXTERNAL_TRAINING_PATH)/board/raspberrypi3/uboot_rpi3-b.txt" if BR2_LINUX_KERNEL_DEFCONFIG="bcm2709"
+	default "$(BR2_EXTERNAL_TRAINING_PATH)/board/raspberrypi3/uboot_rpi4.txt" if BR2_LINUX_KERNEL_DEFCONFIG="bcm2711"
