@@ -12,3 +12,16 @@ config BR2_PACKAGE_TRAINING_MANDATORY
 	   - dropbear for ssh
 	  SDK:
 	   - add C++ support
+
+config BR2_PACKAGE_TRAINING_WIFI
+	bool "package for Wifi and Hotspot"
+	select BR2_PACKAGE_WPA_SUPPLICANT
+	select BR2_PACKAGE_HOSTAPD
+	select BR2_PACKAGE_DNSMASQ
+	select BR2_PACKAGE_IPTABLES
+	help
+	  Install:
+	   - wpa_supplication
+	   - hostapd
+	   - dnsmasq
+	   - iptables
