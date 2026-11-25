@@ -37,6 +37,8 @@ define LINUX_SDK_INSTALL
 	cat $(LINUX_TRAINING_DIR)/Makefile.in | \
 		sed -e 's/@ARCH@/$(KERNEL_ARCH)/'  \
 		    -e 's,@CROSS_COMPILE@,$(notdir $(TARGET_CROSS)),' > $(HOST_DIR)/Makefile
+	cat $(LINUX_TRAINING_DIR)/Dockerfile.in | \
+		sed -e 's/@BASE_IMAGE@/$(BASE_IMAGE)/' > $(HOST_DIR)/Dockerfile
 endef
 
 LINUX_POST_BUILD_HOOKS+=LINUX_SDK_INSTALL

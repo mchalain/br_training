@@ -1,0 +1,18 @@
+FROM @BASE_IMAGE@
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential \
+        ca-certificates \
+        git \
+        make \
+        cmake \
+        pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY . /opt/toolchain
+ENV PATH="/opt/toolchain/bin:${PATH}"
+
+WORKDIR /home/builder
+CMD ["bash"]
